@@ -15,4 +15,12 @@
     <string name="not_have_account_register">Belom punya akun ?</string>
     <string name="have_account_login">Sudah punya akun ?</string>
     <string name="back_button">Tombol Kembali</string>
+    <string name="settings">Pengaturan</string>
+    <string name="language">Bahasa</string>
+    <string name="language_title">Bahasa</string>
+    <string name="logout">Keluar</string>
+    <string name="setting_language">Pengturan Bahasa</string>
+    <string name="logout_description">Apakah kamu yakin mau keluar ?</string>
+    <string name="yes">Iya</string>
+    <string name="no">Ngga</string>
 </resources>
