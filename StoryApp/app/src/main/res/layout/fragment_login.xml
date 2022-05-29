@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.fragment.LoginFragment">
+
+    <TextView
+        android:id="@+id/textView"
+        style="@style/TextAppearance.MdcTypographyStyles.Headline5"
+        android:textStyle="bold"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/login"
+        android:textAllCaps="true"
+        android:layout_margin="@dimen/dimens_large"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayoutEmail"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
+        android:layout_marginTop="@dimen/dimens_medium"
+        android:layout_height="wrap_content"
+        app:boxBackgroundColor="@color/color_soft_gray"
+        app:boxCornerRadiusBottomEnd="7dp"
+        app:boxCornerRadiusBottomStart="7dp"
+        app:boxCornerRadiusTopEnd="7dp"
+        app:boxCornerRadiusTopStart="7dp"
+        app:boxStrokeWidth="0dp"
+        app:layout_constraintEnd_toEndOf="@+id/textView"
+        app:layout_constraintStart_toStartOf="@+id/textView"
+        app:layout_constraintTop_toBottomOf="@+id/textView">
+
+        <com.onedev.storyapp.custom_view.CustomEditTextEmail
+            android:id="@+id/edt_email"
+            style="@style/TextAppearance.MdcTypographyStyles.Body1"
+            android:layout_width="match_parent"
+            android:imeOptions="actionNext"
+            android:inputType="textEmailAddress"
+            android:layout_height="wrap_content" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayoutPassword"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
+        android:layout_marginTop="@dimen/dimens_medium"
+        android:layout_height="wrap_content"
+        app:boxBackgroundColor="@color/color_soft_gray"
+        app:boxCornerRadiusBottomEnd="7dp"
+        app:boxCornerRadiusBottomStart="7dp"
+        app:boxCornerRadiusTopEnd="7dp"
+        app:boxCornerRadiusTopStart="7dp"
+        app:boxStrokeWidth="0dp"
+        app:layout_constraintEnd_toEndOf="@+id/textInputLayoutEmail"
+        app:layout_constraintStart_toStartOf="@+id/textInputLayoutEmail"
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayoutEmail">
+
+        <com.onedev.storyapp.custom_view.CustomEditTextPassword
+            android:id="@+id/edt_password"
+            style="@style/TextAppearance.MdcTypographyStyles.Body1"
+            android:layout_width="match_parent"
+            android:imeOptions="actionDone"
+            android:inputType="textPassword"
+            android:layout_height="wrap_content" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.onedev.storyapp.custom_view.CustomButtonAuth
+        android:id="@+id/btn_login"
+        style="@style/TextAppearance.MdcTypographyStyles.Button"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimens_medium"
+        android:enabled="false"
+        app:layout_constraintEnd_toEndOf="@+id/textInputLayoutPassword"
+        app:layout_constraintStart_toStartOf="@+id/textInputLayoutPassword"
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayoutPassword" />
+
+    <TextView
+        android:id="@+id/tv_register"
+        style="@style/TextAppearance.MdcTypographyStyles.Subtitle1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dimens_large"
+        android:text="@string/not_have_account_register"
+        android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/btn_login"
+        app:layout_constraintStart_toStartOf="@+id/btn_login" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

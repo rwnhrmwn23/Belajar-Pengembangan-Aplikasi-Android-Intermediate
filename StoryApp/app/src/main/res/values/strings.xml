@@ -1,3 +1,18 @@
 <resources>
     <string name="app_name">StoryApp</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="login">Masuk</string>
+    <string name="register">Daftar</string>
+    <string name="email">Email</string>
+    <string name="hint_name">Masukin Nama Kamu</string>
+    <string name="hint_email">Masukin Email Kamu</string>
+    <string name="hint_password">Masukin Password Kamu</string>
+    <string name="invalid_name">Format nama kamu salah nih</string>
+    <string name="invalid_email">Format email kamu salah nih</string>
+    <string name="invalid_password">Format password kamu salah nih</string>
+    <string name="login_success">Kamu Berhasil Masuk</string>
+    <string name="register_success">Kamu Berhasil Daftar</string>
+    <string name="not_have_account_register">Belom punya akun ?</string>
+    <string name="have_account_login">Sudah punya akun ?</string>
+    <string name="back_button">Tombol Kembali</string>
 </resources>

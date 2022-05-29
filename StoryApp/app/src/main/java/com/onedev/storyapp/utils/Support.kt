@@ -1,11 +1,22 @@
 package com.onedev.storyapp.utils
 
 import android.content.Context
+import android.graphics.Color
+import android.text.SpannableString
+import android.text.Spanned
+import android.text.TextPaint
+import android.text.TextUtils
+import android.text.method.LinkMovementMethod
+import android.text.style.ClickableSpan
 import android.view.View
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
+import com.onedev.storyapp.R
+import com.onedev.storyapp.ui.fragment.LoginFragmentDirections
 import com.onedev.storyapp.ui.fragment.ProgressDialogFragment
 
 private lateinit var mOptionDialogFragment: ProgressDialogFragment
