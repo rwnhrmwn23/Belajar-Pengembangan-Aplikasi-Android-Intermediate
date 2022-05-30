@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.fragment.AddStoryFragment">
+    tools:context=".ui.fragment.StoryAddFragment">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/app_bar"
@@ -61,8 +61,7 @@
             android:layout_height="150dp"
             android:gravity="start"
             android:hint="@string/description"
-            android:imeOptions="actionDone"
-            android:inputType="text" />
+            android:imeOptions="actionDone"/>
 
     </com.google.android.material.textfield.TextInputLayout>
 

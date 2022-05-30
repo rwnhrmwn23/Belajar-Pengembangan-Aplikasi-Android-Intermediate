@@ -24,7 +24,7 @@ import com.karumi.dexter.listener.single.PermissionListener
 import com.onedev.storyapp.R
 import com.onedev.storyapp.core.data.Resource
 import com.onedev.storyapp.core.viewmodel.MainViewModel
-import com.onedev.storyapp.databinding.FragmentAddStoryBinding
+import com.onedev.storyapp.databinding.FragmentStoryAddBinding
 import com.onedev.storyapp.utils.*
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
@@ -35,10 +35,10 @@ import org.koin.android.viewmodel.ext.android.viewModel
 import java.io.File
 
 
-class AddStoryFragment : Fragment(), View.OnClickListener {
+class StoryAddFragment : Fragment(), View.OnClickListener {
 
     private val mainViewModel: MainViewModel by viewModel()
-    private var _binding: FragmentAddStoryBinding? = null
+    private var _binding: FragmentStoryAddBinding? = null
     private val binding get() = _binding
 
     private var getFile: File? = null
@@ -48,7 +48,7 @@ class AddStoryFragment : Fragment(), View.OnClickListener {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentAddStoryBinding.inflate(layoutInflater, container, false)
+        _binding = FragmentStoryAddBinding.inflate(layoutInflater, container, false)
         return binding?.root
     }
 
@@ -173,7 +173,7 @@ class AddStoryFragment : Fragment(), View.OnClickListener {
                                 if (response != null) {
                                     when (response) {
                                         is Resource.Loading -> {
-                                            this@AddStoryFragment.showLoading()
+                                            this@StoryAddFragment.showLoading()
                                         }
                                         is Resource.Success -> {
                                             hideLoading()

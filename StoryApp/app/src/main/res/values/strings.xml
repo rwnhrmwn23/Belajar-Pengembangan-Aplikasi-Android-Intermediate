@@ -26,6 +26,7 @@
     <string name="no">Ngga</string>
     <string name="story_image">Gambar Cerita</string>
     <string name="add_story">Tambah Cerita</string>
+    <string name="detail_story">Detail Cerita</string>
     <string name="add_image">Tambah Gambar</string>
     <string name="description">Deskripsi</string>
     <string name="upload">Upload</string>

@@ -1,5 +1,8 @@
 package com.onedev.storyapp.core.data.source.remote.response
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
 object Story {
     data class PostResponse(
         val error: Boolean,
@@ -11,6 +14,7 @@ object Story {
         val listStory: List<DataStory>,
         val message: String
     ) {
+        @Parcelize
         data class DataStory(
             val createdAt: String,
             val description: String,
@@ -19,6 +23,6 @@ object Story {
             val lon: Double? = null,
             val name: String,
             val photoUrl: String
-        )
+        ): Parcelable
     }
 }

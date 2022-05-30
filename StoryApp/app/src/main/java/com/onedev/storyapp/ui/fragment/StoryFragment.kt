@@ -40,6 +40,11 @@ class StoryFragment : Fragment() {
             addItemDecoration(DividerItemDecoration(requireContext(), LinearLayoutManager.VERTICAL))
         }
 
+        storyAdapter.onItemClick = {
+            val action = StoryFragmentDirections.actionStoryFragmentToStoryDetailFragment(it)
+            findNavController().navigate(action)
+        }
+
         binding?.toolbar?.setOnMenuItemClickListener {
             when (it.itemId) {
                 R.id.menu_add -> {
