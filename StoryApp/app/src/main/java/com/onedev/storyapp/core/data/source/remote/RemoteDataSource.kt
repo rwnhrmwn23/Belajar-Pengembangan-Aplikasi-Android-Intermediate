@@ -19,10 +19,6 @@ class RemoteDataSource(
     private val apiServiceWithHeader: ApiServiceWithHeader
 ) {
 
-    companion object {
-        private const val TAG = "RemoteDataSource"
-    }
-
     suspend fun register(request: Register.Request): Flow<ApiResponse<Register.Response>> {
         return flow {
             try {

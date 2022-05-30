@@ -3,20 +3,28 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_main"
-    app:startDestination="@id/mainFragment">
+    app:startDestination="@id/storyFragment">
 
     <fragment
-        android:id="@+id/mainFragment"
-        android:name="com.onedev.storyapp.ui.fragment.MainFragment"
-        android:label="fragment_main"
-        tools:layout="@layout/fragment_main" >
+        android:id="@+id/storyFragment"
+        android:name="com.onedev.storyapp.ui.fragment.StoryFragment"
+        android:label="fragment_story"
+        tools:layout="@layout/fragment_story">
         <action
             android:id="@+id/action_mainFragment_to_settingsFragment"
             app:destination="@id/settingsFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_addStoryFragment"
+            app:destination="@id/addStoryFragment" />
     </fragment>
     <fragment
         android:id="@+id/settingsFragment"
         android:name="com.onedev.storyapp.ui.fragment.SettingsFragment"
         android:label="SettingsFragment"
         tools:layout="@layout/fragment_setting"  />
+    <fragment
+        android:id="@+id/addStoryFragment"
+        android:name="com.onedev.storyapp.ui.fragment.AddStoryFragment"
+        android:label="fragment_add_story"
+        tools:layout="@layout/fragment_add_story" />
 </navigation>

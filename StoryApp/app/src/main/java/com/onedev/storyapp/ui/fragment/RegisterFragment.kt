@@ -133,7 +133,7 @@ class RegisterFragment : Fragment(), View.OnClickListener {
                             response.data?.loginResult?.apply {
                                 putPreference(requireContext(), USER_ID, userId)
                                 putPreference(requireContext(), USER_NAME, name)
-                                putPreference(requireContext(), USER_TOKEN, token)
+                                putPreference(requireContext(), USER_TOKEN, getString(R.string.token, token))
 
                                 startActivity(Intent(requireActivity(), MainActivity::class.java))
                                 requireActivity().finish()

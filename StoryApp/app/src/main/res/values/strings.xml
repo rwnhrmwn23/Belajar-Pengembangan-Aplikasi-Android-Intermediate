@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">StoryApp</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="token">Bearer %s</string>
     <string name="login">Masuk</string>
     <string name="register">Daftar</string>
     <string name="email">Email</string>
@@ -23,4 +24,16 @@
     <string name="logout_description">Apakah kamu yakin mau keluar ?</string>
     <string name="yes">Iya</string>
     <string name="no">Ngga</string>
+    <string name="story_image">Gambar Cerita</string>
+    <string name="add_story">Tambah Cerita</string>
+    <string name="add_image">Tambah Gambar</string>
+    <string name="description">Deskripsi</string>
+    <string name="upload">Upload</string>
+    <string name="no_have_permission">Tidak Mendapatkan Permission</string>
+    <string name="permission_granted">Izin Diberikan</string>
+    <string name="permission_reject">Izin Ditolak</string>
+    <string name="invalid_image">Silakan masukkan berkas gambar terlebih dahulu.</string>
+    <string name="upload_photo">Upload Foto</string>
+    <string name="upload_from_camera">Upload Foto Dari Camera</string>
+    <string name="upload_from_gallerr">Upload Foto Dari Gallery</string>
 </resources>

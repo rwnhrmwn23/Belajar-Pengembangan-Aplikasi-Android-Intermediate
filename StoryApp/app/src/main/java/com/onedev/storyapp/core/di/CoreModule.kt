@@ -32,7 +32,6 @@ val networkModule = module {
             .addInterceptor { chain ->
                 val original = chain.request()
                 val requestBuilder = original.newBuilder()
-                    .method(original.method(), original.body())
                     .addHeader("Authorization", getPreference(get(), USER_TOKEN))
                 val request = requestBuilder.build()
                 chain.proceed(request)
