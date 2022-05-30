@@ -14,7 +14,6 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.FileProvider
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomsheet.BottomSheetDialog
-import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.karumi.dexter.Dexter
 import com.karumi.dexter.PermissionToken
 import com.karumi.dexter.listener.PermissionDeniedResponse
@@ -24,6 +23,7 @@ import com.karumi.dexter.listener.single.PermissionListener
 import com.onedev.storyapp.R
 import com.onedev.storyapp.core.data.Resource
 import com.onedev.storyapp.core.viewmodel.MainViewModel
+import com.onedev.storyapp.databinding.BottomSheetAddPhotoBinding
 import com.onedev.storyapp.databinding.FragmentStoryAddBinding
 import com.onedev.storyapp.utils.*
 import okhttp3.MediaType.Companion.toMediaType
@@ -138,22 +138,20 @@ class StoryAddFragment : Fragment(), View.OnClickListener {
         when (v) {
             binding?.imgAddPhoto -> {
                 val dialog = BottomSheetDialog(requireContext())
-                val view = layoutInflater.inflate(R.layout.bottom_sheet_add_photo, null)
-                val fabCamera = view.findViewById<FloatingActionButton>(R.id.fab_camera)
-                val fabGallery = view.findViewById<FloatingActionButton>(R.id.fab_gallery)
+                val binding = BottomSheetAddPhotoBinding.inflate(layoutInflater)
 
-                fabCamera.setOnClickListener {
+                binding.fabCamera.setOnClickListener {
                     dialog.cancel()
                     openCamera()
                 }
 
-                fabGallery.setOnClickListener {
+                binding.fabGallery.setOnClickListener {
                     dialog.cancel()
                     openGallery()
                 }
 
                 dialog.setCancelable(true)
-                dialog.setContentView(view)
+                dialog.setContentView(binding.root)
                 dialog.show()
             }
             binding?.btnUpload -> {
