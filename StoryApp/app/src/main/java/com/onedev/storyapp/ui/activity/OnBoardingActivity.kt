@@ -27,7 +27,7 @@ class OnBoardingActivity : AppCompatActivity() {
                     startActivity(Intent(this, AuthActivity::class.java))
                 }
                 finish()
-            }, 100)
+            }, 2500)
         }
     }
 }

@@ -13,7 +13,7 @@
         <entry key="app/src/main/res/font/montserrat.xml" value="0.262037037037037" />
         <entry key="app/src/main/res/layout/activity_auth.xml" value="0.24947916666666667" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.24947916666666667" />
-        <entry key="app/src/main/res/layout/activity_on_boarding.xml" value="0.24947916666666667" />
+        <entry key="app/src/main/res/layout/activity_on_boarding.xml" value="0.15613382899628253" />
         <entry key="app/src/main/res/layout/bottom_sheet_add_photo.xml" value="0.24947916666666667" />
         <entry key="app/src/main/res/layout/fragment_add_story.xml" value="0.24947916666666667" />
         <entry key="app/src/main/res/layout/fragment_login.xml" value="0.25" />
@@ -37,5 +37,12 @@
   </component>
   <component name="ProjectType">
     <option name="id" value="Android" />
+  </component>
+  <component name="VisualizationToolProject">
+    <option name="state">
+      <ProjectState>
+        <option name="scale" value="0.15613382899628253" />
+      </ProjectState>
+    </option>
   </component>
 </project>
