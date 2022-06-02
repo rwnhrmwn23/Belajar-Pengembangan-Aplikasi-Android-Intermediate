@@ -2,6 +2,7 @@ package com.onedev.storyapp.ui.fragment
 
 import android.content.Intent
 import android.os.Bundle
+import android.provider.Settings
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -30,6 +31,7 @@ class SettingsFragment : Fragment(), View.OnClickListener {
         super.onViewCreated(view, savedInstanceState)
 
         binding?.imgBack?.setOnClickListener(this)
+        binding?.tvLanguage?.setOnClickListener(this)
         binding?.tvLogOut?.setOnClickListener(this)
     }
 
@@ -42,6 +44,9 @@ class SettingsFragment : Fragment(), View.OnClickListener {
         when (v) {
             binding?.imgBack -> {
                 navigateUp(v)
+            }
+            binding?.tvLanguage -> {
+                startActivity(Intent(Settings.ACTION_LOCALE_SETTINGS))
             }
             binding?.tvLogOut -> {
                 MaterialAlertDialogBuilder(requireContext())
