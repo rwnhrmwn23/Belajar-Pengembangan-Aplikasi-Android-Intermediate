@@ -45,6 +45,14 @@ fun View.showSnackBar(message: String) {
     Snackbar.make(this, message, Snackbar.LENGTH_SHORT).show()
 }
 
+fun View.visible() {
+    this.visibility = View.VISIBLE
+}
+
+fun View.gone() {
+    this.visibility = View.GONE
+}
+
 fun putPreference(context: Context, key: String, value: String) {
     preferenceManager = PreferenceManager(context)
     preferenceManager.putString(key, value)

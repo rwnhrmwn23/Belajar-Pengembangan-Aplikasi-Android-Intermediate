@@ -1,9 +1,7 @@
 package com.onedev.storyapp.ui.activity
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.onedev.storyapp.R
-import com.onedev.storyapp.databinding.ActivityAuthBinding
+import androidx.appcompat.app.AppCompatActivity
 import com.onedev.storyapp.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {

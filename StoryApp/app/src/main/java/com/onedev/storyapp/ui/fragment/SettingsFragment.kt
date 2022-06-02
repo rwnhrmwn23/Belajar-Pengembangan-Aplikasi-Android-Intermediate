@@ -2,20 +2,16 @@ package com.onedev.storyapp.ui.fragment
 
 import android.content.Intent
 import android.os.Bundle
-import android.system.Os.accept
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.preference.PreferenceFragmentCompat
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.onedev.storyapp.R
-import com.onedev.storyapp.databinding.FragmentProgressDialogBinding
 import com.onedev.storyapp.databinding.FragmentSettingBinding
 import com.onedev.storyapp.ui.activity.OnBoardingActivity
 import com.onedev.storyapp.utils.clearPreference
 import com.onedev.storyapp.utils.navigateUp
-import com.onedev.storyapp.utils.putPreference
 
 class SettingsFragment : Fragment(), View.OnClickListener {
 

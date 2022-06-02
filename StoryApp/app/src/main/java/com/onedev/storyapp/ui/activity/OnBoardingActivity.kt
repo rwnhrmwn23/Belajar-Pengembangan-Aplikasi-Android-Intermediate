@@ -1,14 +1,13 @@
 package com.onedev.storyapp.ui.activity
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import androidx.appcompat.app.AppCompatActivity
 import com.onedev.storyapp.databinding.ActivityOnBoardingBinding
 import com.onedev.storyapp.utils.Constant.USER_TOKEN
 import com.onedev.storyapp.utils.getPreference
-import com.onedev.storyapp.utils.putPreference
 
 class OnBoardingActivity : AppCompatActivity() {
     private lateinit var binding: ActivityOnBoardingBinding

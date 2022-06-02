@@ -5,7 +5,6 @@ import android.graphics.Canvas
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.AttributeSet
-import android.util.Patterns
 import com.google.android.material.textfield.TextInputEditText
 import com.onedev.storyapp.R
 

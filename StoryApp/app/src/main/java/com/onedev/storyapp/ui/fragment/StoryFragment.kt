@@ -59,21 +59,32 @@ class StoryFragment : Fragment() {
     }
 
     private fun loadStory() {
-        mainViewModel.story().observe(viewLifecycleOwner) { response ->
-            if (response != null) {
-                when (response) {
-                    is Resource.Loading -> {
-                        this@StoryFragment.showLoading()
-                    }
-                    is Resource.Success -> {
-                        hideLoading()
-                        response.data?.listStory?.apply {
-                            storyAdapter.setListData(this)
+        binding?.apply {
+            mainViewModel.story().observe(viewLifecycleOwner) { response ->
+                if (response != null) {
+                    when (response) {
+                        is Resource.Loading -> {
+                            this@StoryFragment.showLoading()
+                            lottieError.gone()
+                            tvError.gone()
+                            rvStory.gone()
                         }
-                    }
-                    is Resource.Error -> {
-                        hideLoading()
-                        requireView().showSnackBar(response.message.toString())
+                        is Resource.Success -> {
+                            hideLoading()
+                            response.data?.listStory?.apply {
+                                storyAdapter.setListData(this)
+                                lottieError.gone()
+                                tvError.gone()
+                                rvStory.visible()
+                            }
+                        }
+                        is Resource.Error -> {
+                            hideLoading()
+                            tvError.text = response.message.toString()
+                            lottieError.visible()
+                            tvError.visible()
+                            rvStory.gone()
+                        }
                     }
                 }
             }
