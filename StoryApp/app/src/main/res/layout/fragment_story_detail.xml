@@ -43,6 +43,7 @@
             android:layout_marginTop="@dimen/dimens_small"
             android:contentDescription="@string/story_image"
             android:loadImage="@{viewmodel.photoUrl}"
+            android:transitionName="storyImg"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/app_bar"
@@ -57,6 +58,7 @@
             android:layout_marginTop="@dimen/dimens_small"
             android:text="@{viewmodel.name}"
             android:textStyle="bold"
+            android:transitionName="storyName"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/img_story"
             tools:text="@string/app_name" />
@@ -69,6 +71,7 @@
             android:layout_marginEnd="@dimen/dimens_medium"
             android:layout_marginBottom="@dimen/dimens_small"
             android:text="@{viewmodel.description}"
+            android:transitionName="storyDescription"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/tv_name"

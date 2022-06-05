@@ -1,6 +1,7 @@
 package com.onedev.storyapp.ui.fragment
 
 import android.os.Bundle
+import androidx.transition.TransitionInflater
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,6 +15,11 @@ class StoryDetailFragment : Fragment() {
     private var _binding: FragmentStoryDetailBinding? = null
     private val binding get() = _binding
     private val args: StoryDetailFragmentArgs by navArgs()
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        sharedElementEnterTransition = TransitionInflater.from(requireContext()).inflateTransition(android.R.transition.slide_right)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

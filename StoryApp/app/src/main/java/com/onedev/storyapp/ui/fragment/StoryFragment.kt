@@ -2,12 +2,16 @@ package com.onedev.storyapp.ui.fragment
 
 import android.os.Bundle
 import android.view.*
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.onedev.storyapp.R
 import com.onedev.storyapp.core.data.Resource
+import com.onedev.storyapp.core.data.source.remote.response.Story
 import com.onedev.storyapp.core.viewmodel.MainViewModel
 import com.onedev.storyapp.databinding.FragmentStoryBinding
 import com.onedev.storyapp.ui.adapter.StoryAdapter
@@ -40,9 +44,14 @@ class StoryFragment : Fragment() {
             addItemDecoration(DividerItemDecoration(requireContext(), LinearLayoutManager.VERTICAL))
         }
 
-        storyAdapter.onItemClick = {
-            val action = StoryFragmentDirections.actionStoryFragmentToStoryDetailFragment(it)
-            findNavController().navigate(action)
+        storyAdapter.onItemClick = { dataStory: Story.GetResponse.DataStory, imgStory: ImageView, tvNameStory: TextView, tvDescriptionStory: TextView ->
+            val extras = FragmentNavigatorExtras(
+                imgStory to "storyImg",
+                tvNameStory to "storyName",
+                tvDescriptionStory to "storyDescription"
+            )
+            val action = StoryFragmentDirections.actionStoryFragmentToStoryDetailFragment(dataStory)
+            findNavController().navigate(action, extras)
         }
 
         binding?.toolbar?.setOnMenuItemClickListener {

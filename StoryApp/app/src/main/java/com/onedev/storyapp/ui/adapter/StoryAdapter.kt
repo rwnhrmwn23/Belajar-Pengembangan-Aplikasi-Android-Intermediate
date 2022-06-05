@@ -3,6 +3,8 @@ package com.onedev.storyapp.ui.adapter
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.onedev.storyapp.core.data.source.remote.response.Story
 import com.onedev.storyapp.databinding.LayoutListStoryBinding
@@ -10,7 +12,7 @@ import com.onedev.storyapp.databinding.LayoutListStoryBinding
 class StoryAdapter : RecyclerView.Adapter<StoryAdapter.HomeViewHolder>() {
 
     private val datas = ArrayList<Story.GetResponse.DataStory>()
-    var onItemClick: ((Story.GetResponse.DataStory) -> Unit)? = null
+    var onItemClick: ((Story.GetResponse.DataStory, ImageView, TextView, TextView) -> Unit)? = null
 
     @SuppressLint("NotifyDataSetChanged")
     fun setListData(listData: List<Story.GetResponse.DataStory>?) {
@@ -27,7 +29,7 @@ class StoryAdapter : RecyclerView.Adapter<StoryAdapter.HomeViewHolder>() {
             binding.executePendingBindings()
 
             itemView.setOnClickListener {
-                onItemClick?.invoke(data)
+                onItemClick?.invoke(data, binding.imgStory, binding.tvName, binding.tvDescription)
             }
         }
     }
