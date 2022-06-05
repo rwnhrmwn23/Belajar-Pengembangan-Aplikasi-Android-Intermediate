@@ -7,7 +7,6 @@ import android.util.AttributeSet
 import android.view.Gravity
 import androidx.appcompat.widget.AppCompatButton
 import androidx.core.content.ContextCompat
-import com.google.android.material.button.MaterialButton
 import com.onedev.storyapp.R
 
 class CustomButtonAuth: AppCompatButton {

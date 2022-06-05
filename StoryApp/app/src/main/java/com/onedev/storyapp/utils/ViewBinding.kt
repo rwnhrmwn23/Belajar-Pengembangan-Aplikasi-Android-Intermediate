@@ -13,7 +13,7 @@ fun ImageView.loadImage(url: Any?) {
     try {
         val options = RequestOptions()
             .placeholder(getProgressDrawable(context))
-            .error(R.mipmap.ic_launcher)
+            .error(R.drawable.ic_baseline_broken_image)
         Glide.with(context)
             .setDefaultRequestOptions(options)
             .load(url)

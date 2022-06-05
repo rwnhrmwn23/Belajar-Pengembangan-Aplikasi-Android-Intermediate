@@ -8,7 +8,15 @@
         <entry key="app/src/main/res/drawable/bg_button_disabled.xml" value="0.1465" />
         <entry key="app/src/main/res/drawable/bg_button_enabled.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/bottom_sheet_shape.xml" value="0.1465" />
+        <entry key="app/src/main/res/drawable/ic_baseline_broken_image.xml" value="0.148" />
+        <entry key="app/src/main/res/drawable/ic_round_add.xml" value="0.148" />
+        <entry key="app/src/main/res/drawable/ic_round_add_a_photo.xml" value="0.148" />
+        <entry key="app/src/main/res/drawable/ic_round_camera_alt.xml" value="0.148" />
+        <entry key="app/src/main/res/drawable/ic_round_image.xml" value="0.148" />
+        <entry key="app/src/main/res/drawable/ic_round_keyboard_backspace.xml" value="0.148" />
+        <entry key="app/src/main/res/drawable/ic_round_keyboard_backspace_white.xml" value="0.148" />
         <entry key="app/src/main/res/drawable/ic_round_language.xml" value="0.1215" />
+        <entry key="app/src/main/res/drawable/ic_round_logout.xml" value="0.148" />
         <entry key="app/src/main/res/drawable/ic_round_settings.xml" value="0.1465" />
         <entry key="app/src/main/res/font/montserrat.xml" value="0.262037037037037" />
         <entry key="app/src/main/res/layout/activity_auth.xml" value="0.24947916666666667" />
