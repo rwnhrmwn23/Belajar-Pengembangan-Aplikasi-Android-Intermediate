@@ -35,4 +35,8 @@
     <string name="upload_photo">Upload Foto</string>
     <string name="upload_from_camera">Upload Foto Dari Camera</string>
     <string name="upload_from_gallery">Upload Foto Dari Gallery</string>
+    <string name="add_widget">Tambah Widget</string>
+    <string name="app_widget_description">Ini deskripsi widget</string>
+    <string name="appwidget_text">WIDGET STORY APP</string>
+    <string name="empty_text">Tidak Ada Data</string>
 </resources>

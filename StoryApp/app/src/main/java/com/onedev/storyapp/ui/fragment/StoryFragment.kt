@@ -1,7 +1,9 @@
 package com.onedev.storyapp.ui.fragment
 
 import android.os.Bundle
-import android.view.*
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
@@ -16,6 +18,7 @@ import com.onedev.storyapp.core.viewmodel.MainViewModel
 import com.onedev.storyapp.databinding.FragmentStoryBinding
 import com.onedev.storyapp.ui.adapter.StoryAdapter
 import com.onedev.storyapp.utils.*
+import com.onedev.storyapp.utils.Constant.LIST_STRING
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class StoryFragment : Fragment() {
@@ -85,6 +88,12 @@ class StoryFragment : Fragment() {
                                 lottieError.gone()
                                 tvError.gone()
                                 rvStory.visible()
+
+                                val listImg = ArrayList<String>()
+                                for (i in this) {
+                                    listImg.addAll(listOf(i.photoUrl))
+                                }
+                                putListPreference(requireContext(), LIST_STRING, listImg)
                             }
                         }
                         is Resource.Error -> {

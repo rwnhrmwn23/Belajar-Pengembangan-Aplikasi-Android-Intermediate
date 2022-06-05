@@ -63,6 +63,16 @@ fun getPreference(context: Context, key: String): String {
     return preferenceManager.getString(key)
 }
 
+fun putListPreference(context: Context, key: String, value: List<String>) {
+    preferenceManager = PreferenceManager(context)
+    preferenceManager.putListString(key, value)
+}
+
+fun getListPreference(context: Context, key: String): MutableSet<String>? {
+    preferenceManager = PreferenceManager(context)
+    return preferenceManager.getListString(key)
+}
+
 fun clearPreference(context: Context) {
     preferenceManager = PreferenceManager(context)
     return preferenceManager.clearPreferences()

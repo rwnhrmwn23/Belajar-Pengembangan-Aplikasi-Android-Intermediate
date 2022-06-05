@@ -35,4 +35,8 @@
     <string name="upload_photo">Upload Photo</string>
     <string name="upload_from_camera">Upload Photo From Camera</string>
     <string name="upload_from_gallery">Upload Photo From Gallery</string>
+    <string name="add_widget">Add widget</string>
+    <string name="app_widget_description">This is an app widget description</string>
+    <string name="appwidget_text">STORY APP WIDGET</string>
+    <string name="empty_text">NO DATA</string>
 </resources>

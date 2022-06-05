@@ -7,4 +7,5 @@
     <dimen name="dimens_status_bar">30dp</dimen>
     <dimen name="icon_size_small">40dp</dimen>
     <dimen name="icon_size_medium">60dp</dimen>
+    <dimen name="widget_margin">0dp</dimen>
 </resources>

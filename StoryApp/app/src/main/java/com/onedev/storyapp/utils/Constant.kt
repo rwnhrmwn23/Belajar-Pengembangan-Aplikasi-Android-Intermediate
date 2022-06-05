@@ -5,4 +5,5 @@ object Constant {
     const val USER_ID = "user_id"
     const val USER_NAME = "user_name"
     const val USER_TOKEN = "user_token"
+    const val LIST_STRING = "list_string"
 }
