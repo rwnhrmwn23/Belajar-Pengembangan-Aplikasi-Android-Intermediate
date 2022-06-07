@@ -2,6 +2,7 @@
     <string name="app_name">My Google Maps</string>
     <string name="title_activity_maps">MapsActivity</string>
     <string name="title_activity_location">LocationActivity</string>
+    <string name="title_activity_geofence">GeofenceActivity</string>
     <string name="normal_type">Normal</string>
     <string name="satellite_type">Satellite</string>
     <string name="terrain_type">Terrain</string>

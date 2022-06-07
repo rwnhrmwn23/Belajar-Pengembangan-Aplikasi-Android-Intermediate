@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/layout/activity_geofence.xml" value="0.24947916666666667" />
         <entry key="app/src/main/res/layout/activity_location.xml" value="0.28229166666666666" />
         <entry key="app/src/main/res/layout/activity_maps.xml" value="0.1648148148148148" />
         <entry key="app/src/main/res/menu/map_options.xml" value="0.2046875" />
