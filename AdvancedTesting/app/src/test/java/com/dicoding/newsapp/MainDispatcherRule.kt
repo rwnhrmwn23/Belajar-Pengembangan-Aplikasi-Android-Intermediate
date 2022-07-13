@@ -1,4 +1,4 @@
-package com.dicoding.newsapp.ui
+package com.dicoding.newsapp
 
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
