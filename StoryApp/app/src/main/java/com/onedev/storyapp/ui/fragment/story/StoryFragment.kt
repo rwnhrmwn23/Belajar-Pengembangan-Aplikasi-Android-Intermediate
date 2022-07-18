@@ -52,9 +52,7 @@ class StoryFragment : Fragment() {
                 tvNameStory to "storyName",
                 tvDescriptionStory to "storyDescription"
             )
-            val action = StoryFragmentDirections.actionStoryFragmentToStoryDetailFragment(
-                    dataStory
-                )
+            val action = StoryFragmentDirections.actionStoryFragmentToStoryDetailFragment(dataStory)
             findNavController().navigate(action, extras)
         }
 
@@ -62,6 +60,9 @@ class StoryFragment : Fragment() {
             when (it.itemId) {
                 R.id.menu_add -> {
                     findNavController().navigate(StoryFragmentDirections.actionMainFragmentToAddStoryFragment())
+                }
+                R.id.menu_maps -> {
+                    findNavController().navigate(StoryFragmentDirections.actionStoryFragmentToMapsFragment())
                 }
                 R.id.menu_setting -> {
                     findNavController().navigate(StoryFragmentDirections.actionMainFragmentToSettingsFragment())

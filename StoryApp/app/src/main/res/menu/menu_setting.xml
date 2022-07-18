@@ -5,10 +5,16 @@
         android:id="@+id/menu_add"
         android:icon="@drawable/ic_round_add"
         android:title="@string/add_story"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/menu_maps"
+        android:icon="@drawable/ic_baseline_map"
+        android:title="@string/maps"
         app:showAsAction="ifRoom" />
     <item
         android:id="@+id/menu_setting"
         android:icon="@drawable/ic_round_settings"
         android:title="@string/settings"
-        app:showAsAction="always" />
+        app:showAsAction="ifRoom" />
 </menu>

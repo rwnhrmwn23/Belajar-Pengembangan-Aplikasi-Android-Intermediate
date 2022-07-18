@@ -39,4 +39,8 @@
     <string name="app_widget_description">This is an app widget description</string>
     <string name="appwidget_text">STORY APP WIDGET</string>
     <string name="empty_text">NO DATA</string>
+    <string name="maps">Maps</string>
+    <string name="title">Title</string>
+    <string name="location">Location</string>
+    <string name="image_story">Image Story</string>
 </resources>
