@@ -12,7 +12,7 @@ dependencyResolutionManagement {
         mavenCentral()
         maven { url "https://maven.google.com" }
         maven { url "https://jitpack.io" }
-        jcenter() // Warning: this repository is going to shut down soon
+        jcenter()
     }
 }
 rootProject.name = "StoryApp"

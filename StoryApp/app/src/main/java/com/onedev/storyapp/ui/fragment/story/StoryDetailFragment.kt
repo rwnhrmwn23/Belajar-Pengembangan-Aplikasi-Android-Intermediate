@@ -1,4 +1,4 @@
-package com.onedev.storyapp.ui.fragment
+package com.onedev.storyapp.ui.fragment.story
 
 import android.os.Bundle
 import androidx.transition.TransitionInflater

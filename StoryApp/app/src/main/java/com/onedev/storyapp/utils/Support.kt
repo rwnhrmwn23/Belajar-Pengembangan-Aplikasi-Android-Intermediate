@@ -11,7 +11,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import com.google.android.material.snackbar.Snackbar
-import com.onedev.storyapp.ui.fragment.ProgressDialogFragment
+import com.onedev.storyapp.ui.fragment.etc.ProgressDialogFragment
 import java.io.*
 import java.text.SimpleDateFormat
 import java.util.*

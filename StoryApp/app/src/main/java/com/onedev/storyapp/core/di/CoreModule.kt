@@ -8,7 +8,9 @@ import com.onedev.storyapp.core.data.source.remote.network.ApiServiceWithHeader
 import com.onedev.storyapp.core.domain.repository.IStoryAppRepository
 import com.onedev.storyapp.core.domain.usecase.StoryAppInteractor
 import com.onedev.storyapp.core.domain.usecase.StoryAppUseCase
-import com.onedev.storyapp.core.viewmodel.MainViewModel
+import com.onedev.storyapp.ui.fragment.login.LoginViewModel
+import com.onedev.storyapp.ui.fragment.register.RegisterViewModel
+import com.onedev.storyapp.ui.fragment.story.StoryViewModel
 import com.onedev.storyapp.utils.Constant.USER_TOKEN
 import com.onedev.storyapp.utils.getPreference
 import okhttp3.OkHttpClient
@@ -64,5 +66,7 @@ val repositoryModule = module {
 }
 
 val viewModelModule = module {
-    viewModel { MainViewModel(get()) }
+    viewModel { LoginViewModel(get()) }
+    viewModel { RegisterViewModel(get()) }
+    viewModel { StoryViewModel(get()) }
 }

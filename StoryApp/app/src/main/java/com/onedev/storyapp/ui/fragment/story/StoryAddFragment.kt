@@ -1,4 +1,4 @@
-package com.onedev.storyapp.ui.fragment
+package com.onedev.storyapp.ui.fragment.story
 
 import android.Manifest
 import android.app.Activity.RESULT_OK
@@ -22,7 +22,6 @@ import com.karumi.dexter.listener.PermissionRequest
 import com.karumi.dexter.listener.single.PermissionListener
 import com.onedev.storyapp.R
 import com.onedev.storyapp.core.data.Resource
-import com.onedev.storyapp.core.viewmodel.MainViewModel
 import com.onedev.storyapp.databinding.BottomSheetAddPhotoBinding
 import com.onedev.storyapp.databinding.FragmentStoryAddBinding
 import com.onedev.storyapp.utils.*
@@ -37,7 +36,7 @@ import java.io.File
 
 class StoryAddFragment : Fragment(), View.OnClickListener {
 
-    private val mainViewModel: MainViewModel by viewModel()
+    private val storyViewModel: StoryViewModel by viewModel()
     private var _binding: FragmentStoryAddBinding? = null
     private val binding get() = _binding
 
@@ -167,7 +166,7 @@ class StoryAddFragment : Fragment(), View.OnClickListener {
                         )
                         if (description.isNotEmpty()) {
                             val descriptionRequestBody = description.toRequestBody("text/plain".toMediaType())
-                            mainViewModel.story(imageMultipart, descriptionRequestBody).observe(viewLifecycleOwner) { response ->
+                            storyViewModel.story(imageMultipart, descriptionRequestBody).observe(viewLifecycleOwner) { response ->
                                 if (response != null) {
                                     when (response) {
                                         is Resource.Loading -> {

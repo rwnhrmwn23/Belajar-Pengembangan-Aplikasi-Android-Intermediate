@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.fragment.LoginFragment">
+    tools:context=".ui.fragment.login.LoginFragment">
 
     <TextView
         android:id="@+id/textView"
@@ -70,7 +70,7 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
-    <com.onedev.storyapp.custom_view.CustomButtonAuth
+    <com.onedev.storyapp.custom_view.CustomButtonLogin
         android:id="@+id/btn_login"
         style="@style/TextAppearance.MdcTypographyStyles.Button"
         android:layout_width="0dp"

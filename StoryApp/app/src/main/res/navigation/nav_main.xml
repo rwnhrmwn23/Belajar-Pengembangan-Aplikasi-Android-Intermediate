@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/storyFragment"
-        android:name="com.onedev.storyapp.ui.fragment.StoryFragment"
+        android:name="com.onedev.storyapp.ui.fragment.story.StoryFragment"
         android:label="fragment_story"
         tools:layout="@layout/fragment_story">
         <action
@@ -22,17 +22,17 @@
     </fragment>
     <fragment
         android:id="@+id/settingsFragment"
-        android:name="com.onedev.storyapp.ui.fragment.SettingsFragment"
+        android:name="com.onedev.storyapp.ui.fragment.settings.SettingsFragment"
         android:label="SettingsFragment"
         tools:layout="@layout/fragment_setting"  />
     <fragment
         android:id="@+id/addStoryFragment"
-        android:name="com.onedev.storyapp.ui.fragment.StoryAddFragment"
+        android:name="com.onedev.storyapp.ui.fragment.story.StoryAddFragment"
         android:label="fragment_add_story"
         tools:layout="@layout/fragment_story_add" />
     <fragment
         android:id="@+id/storyDetailFragment"
-        android:name="com.onedev.storyapp.ui.fragment.StoryDetailFragment"
+        android:name="com.onedev.storyapp.ui.fragment.story.StoryDetailFragment"
         android:label="StoryDetailFragment"
         tools:layout="@layout/fragment_story_detail">
         <argument

@@ -9,7 +9,7 @@ import androidx.appcompat.widget.AppCompatButton
 import androidx.core.content.ContextCompat
 import com.onedev.storyapp.R
 
-class CustomButtonAuth: AppCompatButton {
+class CustomButtonRegister: AppCompatButton {
 
     private lateinit var enabledBackground: Drawable
     private lateinit var disabledBackground: Drawable
@@ -39,6 +39,6 @@ class CustomButtonAuth: AppCompatButton {
         setTextColor(txtColor)
         textSize = 12f
         gravity = Gravity.CENTER
-        text = context.getString(R.string.login)
+        text = context.getString(R.string.register)
     }
 }

@@ -17,4 +17,8 @@ object Login {
             val token: String,
         )
     }
+
+    fun setRequestLogin(email: String, password: String): Request {
+        return Request(email, password)
+    }
 }

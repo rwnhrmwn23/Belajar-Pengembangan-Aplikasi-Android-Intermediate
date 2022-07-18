@@ -1,4 +1,4 @@
-package com.onedev.storyapp.ui.fragment
+package com.onedev.storyapp.ui.fragment.register
 
 import android.content.Intent
 import android.graphics.Color
@@ -6,17 +6,16 @@ import android.os.Bundle
 import android.text.*
 import android.text.method.LinkMovementMethod
 import android.text.style.ClickableSpan
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.onedev.storyapp.R
 import com.onedev.storyapp.core.data.Resource
-import com.onedev.storyapp.core.data.source.remote.response.Login
-import com.onedev.storyapp.core.data.source.remote.response.Register
-import com.onedev.storyapp.core.viewmodel.MainViewModel
+import com.onedev.storyapp.core.data.source.remote.response.Login.setRequestLogin
+import com.onedev.storyapp.core.data.source.remote.response.Register.setBodyRequest
 import com.onedev.storyapp.databinding.FragmentRegisterBinding
 import com.onedev.storyapp.ui.activity.MainActivity
 import com.onedev.storyapp.utils.*
@@ -28,7 +27,7 @@ import org.koin.android.viewmodel.ext.android.viewModel
 
 class RegisterFragment : Fragment(), View.OnClickListener {
 
-    private val mainViewModel: MainViewModel by viewModel()
+    private val registerViewModel: RegisterViewModel by viewModel()
     private var _binding: FragmentRegisterBinding? = null
     private val binding get() = _binding
 
@@ -123,8 +122,7 @@ class RegisterFragment : Fragment(), View.OnClickListener {
 
     private fun login(email: String, password: String) {
         binding?.apply {
-            val body = Login.Request(email, password)
-            mainViewModel.login(body).observe(viewLifecycleOwner) { response ->
+            registerViewModel.login(setRequestLogin(email, password)).observe(viewLifecycleOwner) { response ->
                 if (response != null) {
                     when (response) {
                         is Resource.Loading -> { }
@@ -160,19 +158,20 @@ class RegisterFragment : Fragment(), View.OnClickListener {
                     val email = edtEmail.text.toString()
                     val password = edtPassword.text.toString()
 
-                    val body = Register.Request(name, email, password)
-                    mainViewModel.register(body).observe(viewLifecycleOwner) { response ->
-                        if (response != null) {
-                            when (response) {
-                                is Resource.Loading -> {
-                                    this@RegisterFragment.showLoading()
-                                }
-                                is Resource.Success -> {
-                                    login(email, password)
-                                }
-                                is Resource.Error -> {
-                                    hideLoading()
-                                    requireView().showSnackBar(response.message.toString())
+                    if (name.isNotEmpty() && email.isNotEmpty() && password.isNotEmpty()) {
+                        registerViewModel.register(setBodyRequest(name, email, password)).observe(viewLifecycleOwner) { response ->
+                            if (response != null) {
+                                when (response) {
+                                    is Resource.Loading -> {
+                                        this@RegisterFragment.showLoading()
+                                    }
+                                    is Resource.Success -> {
+                                        login(email, password)
+                                    }
+                                    is Resource.Error -> {
+                                        hideLoading()
+                                        requireView().showSnackBar(response.message.toString())
+                                    }
                                 }
                             }
                         }

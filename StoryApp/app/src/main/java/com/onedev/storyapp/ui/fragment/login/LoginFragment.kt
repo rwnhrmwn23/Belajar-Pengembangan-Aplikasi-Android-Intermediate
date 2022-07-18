@@ -1,4 +1,4 @@
-package com.onedev.storyapp.ui.fragment
+package com.onedev.storyapp.ui.fragment.login
 
 import android.content.Intent
 import android.graphics.Color
@@ -6,16 +6,15 @@ import android.os.Bundle
 import android.text.*
 import android.text.method.LinkMovementMethod
 import android.text.style.ClickableSpan
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.onedev.storyapp.R
 import com.onedev.storyapp.core.data.Resource
 import com.onedev.storyapp.core.data.source.remote.response.Login
-import com.onedev.storyapp.core.viewmodel.MainViewModel
 import com.onedev.storyapp.databinding.FragmentLoginBinding
 import com.onedev.storyapp.ui.activity.MainActivity
 import com.onedev.storyapp.utils.Constant.USER_ID
@@ -29,7 +28,7 @@ import org.koin.android.viewmodel.ext.android.viewModel
 
 class LoginFragment : Fragment(), View.OnClickListener {
 
-    private val mainViewModel: MainViewModel by viewModel()
+    private val loginViewModel: LoginViewModel by viewModel()
     private var _binding: FragmentLoginBinding? = null
     private val binding get() = _binding
 
@@ -118,7 +117,7 @@ class LoginFragment : Fragment(), View.OnClickListener {
                     val password = edtPassword.text.toString()
 
                     val body = Login.Request(email, password)
-                    mainViewModel.login(body).observe(viewLifecycleOwner) { response ->
+                    loginViewModel.login(body).observe(viewLifecycleOwner) { response ->
                         if (response != null) {
                             when (response) {
                                 is Resource.Loading -> {

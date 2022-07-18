@@ -1,4 +1,4 @@
-package com.onedev.storyapp.ui.fragment
+package com.onedev.storyapp.ui.fragment.settings
 
 import android.content.Intent
 import android.os.Bundle

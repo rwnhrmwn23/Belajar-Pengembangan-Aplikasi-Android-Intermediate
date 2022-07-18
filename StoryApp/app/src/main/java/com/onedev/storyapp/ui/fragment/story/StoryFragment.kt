@@ -1,4 +1,4 @@
-package com.onedev.storyapp.ui.fragment
+package com.onedev.storyapp.ui.fragment.story
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -14,7 +14,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.onedev.storyapp.R
 import com.onedev.storyapp.core.data.Resource
 import com.onedev.storyapp.core.data.source.remote.response.Story
-import com.onedev.storyapp.core.viewmodel.MainViewModel
 import com.onedev.storyapp.databinding.FragmentStoryBinding
 import com.onedev.storyapp.ui.adapter.StoryAdapter
 import com.onedev.storyapp.utils.*
@@ -24,7 +23,7 @@ import org.koin.android.viewmodel.ext.android.viewModel
 class StoryFragment : Fragment() {
 
     private lateinit var storyAdapter: StoryAdapter
-    private val mainViewModel: MainViewModel by viewModel()
+    private val storyViewModel: StoryViewModel by viewModel()
     private var _binding: FragmentStoryBinding? = null
     private val binding get() = _binding
 
@@ -53,7 +52,9 @@ class StoryFragment : Fragment() {
                 tvNameStory to "storyName",
                 tvDescriptionStory to "storyDescription"
             )
-            val action = StoryFragmentDirections.actionStoryFragmentToStoryDetailFragment(dataStory)
+            val action = StoryFragmentDirections.actionStoryFragmentToStoryDetailFragment(
+                    dataStory
+                )
             findNavController().navigate(action, extras)
         }
 
@@ -72,7 +73,7 @@ class StoryFragment : Fragment() {
 
     private fun loadStory() {
         binding?.apply {
-            mainViewModel.story().observe(viewLifecycleOwner) { response ->
+            storyViewModel.story().observe(viewLifecycleOwner) { response ->
                 if (response != null) {
                     when (response) {
                         is Resource.Loading -> {

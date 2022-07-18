@@ -1,4 +1,4 @@
-package com.onedev.storyapp.ui.fragment
+package com.onedev.storyapp.ui.fragment.etc
 
 import android.os.Bundle
 import android.view.LayoutInflater

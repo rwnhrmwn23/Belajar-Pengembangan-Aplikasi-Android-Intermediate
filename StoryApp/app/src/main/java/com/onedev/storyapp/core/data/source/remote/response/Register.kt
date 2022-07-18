@@ -11,4 +11,8 @@ object Register {
         val error: Boolean,
         val message: String
     )
+
+    fun setBodyRequest(name: String, email: String, password: String): Request {
+        return Request(name, email, password)
+    }
 }

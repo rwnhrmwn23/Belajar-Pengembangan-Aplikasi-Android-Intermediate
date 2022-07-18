@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.fragment.RegisterFragment">
+    tools:context=".ui.fragment.register.RegisterFragment">
 
     <ImageView
         android:id="@+id/img_back"
@@ -108,7 +108,7 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
-    <com.onedev.storyapp.custom_view.CustomButtonAuth
+    <com.onedev.storyapp.custom_view.CustomButtonRegister
         android:id="@+id/btn_login"
         style="@style/TextAppearance.MdcTypographyStyles.Button"
         android:layout_width="0dp"
