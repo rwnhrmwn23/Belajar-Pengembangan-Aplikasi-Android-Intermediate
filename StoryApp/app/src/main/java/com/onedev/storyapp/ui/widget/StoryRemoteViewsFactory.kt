@@ -36,7 +36,7 @@ internal class StoryRemoteViewsFactory(private val context: Context) :
     override fun getCount(): Int = datas.size
 
     override fun getViewAt(position: Int): RemoteViews {
-        val rv = RemoteViews(context.packageName, R.layout.widget_item).apply {
+        val rv = RemoteViews(context.packageName, R.layout.layout_item_widget).apply {
             val image = Glide.with(context)
                 .asBitmap()
                 .load(datas[position])

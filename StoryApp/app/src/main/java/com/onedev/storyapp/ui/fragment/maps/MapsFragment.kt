@@ -100,7 +100,7 @@ class MapsFragment : Fragment() {
 
     private fun loadStory() {
         binding?.apply {
-            storyLocationViewModel.storyWithLocation().observe(viewLifecycleOwner) { response ->
+            storyLocationViewModel.storyMap(page = 1, size = 10, location = 1).observe(viewLifecycleOwner) { response ->
                 if (response != null) {
                     when (response) {
                         is Resource.Loading -> {

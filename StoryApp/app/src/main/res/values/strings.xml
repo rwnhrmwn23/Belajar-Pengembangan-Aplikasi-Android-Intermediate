@@ -43,4 +43,6 @@
     <string name="title">Title</string>
     <string name="location">Location</string>
     <string name="image_story">Image Story</string>
+    <string name="retry">Retry</string>
+    <string name="Loading">Loading</string>
 </resources>

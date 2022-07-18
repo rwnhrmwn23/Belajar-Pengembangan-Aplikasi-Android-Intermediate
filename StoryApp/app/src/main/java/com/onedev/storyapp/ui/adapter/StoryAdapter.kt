@@ -1,26 +1,19 @@
 package com.onedev.storyapp.ui.adapter
 
-import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.paging.PagingDataAdapter
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.onedev.storyapp.core.data.source.remote.response.Story
 import com.onedev.storyapp.databinding.LayoutListStoryBinding
 
-class StoryAdapter : RecyclerView.Adapter<StoryAdapter.HomeViewHolder>() {
+class StoryAdapter :
+    PagingDataAdapter<Story.GetResponse.DataStory, StoryAdapter.HomeViewHolder>(DIFF_CALLBACK) {
 
-    private val datas = ArrayList<Story.GetResponse.DataStory>()
     var onItemClick: ((Story.GetResponse.DataStory, ImageView, TextView, TextView) -> Unit)? = null
-
-    @SuppressLint("NotifyDataSetChanged")
-    fun setListData(listData: List<Story.GetResponse.DataStory>?) {
-        if (listData == null) return
-        datas.clear()
-        datas.addAll(listData)
-        notifyDataSetChanged()
-    }
 
     inner class HomeViewHolder(private val binding: LayoutListStoryBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -41,9 +34,28 @@ class StoryAdapter : RecyclerView.Adapter<StoryAdapter.HomeViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: HomeViewHolder, position: Int) {
-        holder.bind(datas[position])
+        val data = getItem(position)
+        if (data != null) {
+            holder.bind(data)
+        }
     }
 
-    override fun getItemCount(): Int = datas.size
+    companion object {
+        private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<Story.GetResponse.DataStory>() {
+            override fun areItemsTheSame(
+                oldItem: Story.GetResponse.DataStory,
+                newItem: Story.GetResponse.DataStory
+            ): Boolean {
+                return oldItem == newItem
+            }
+
+            override fun areContentsTheSame(
+                oldItem: Story.GetResponse.DataStory,
+                newItem: Story.GetResponse.DataStory
+            ): Boolean {
+                return oldItem.id == newItem.id
+            }
+        }
+    }
 
 }

@@ -12,7 +12,6 @@ import com.dicoding.myunlimitedquotes.network.QuoteResponseItem
 class QuoteListAdapter :
     PagingDataAdapter<QuoteResponseItem, QuoteListAdapter.MyViewHolder>(DIFF_CALLBACK) {
 
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val binding = ItemQuoteBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return MyViewHolder(binding)

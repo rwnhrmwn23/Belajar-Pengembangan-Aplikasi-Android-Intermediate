@@ -8,11 +8,10 @@ import retrofit2.http.*
 interface ApiServiceWithHeader {
 
     @GET("v1/stories")
-    suspend fun story(): Story.GetResponse
-
-    @GET("v1/stories")
-    suspend fun storyWithLocation(
-        @Query("location") location: Int = 1
+    suspend fun story(
+        @Query("page") page: Int,
+        @Query("size") size: Int,
+        @Query("location") location: Int,
     ): Story.GetResponse
 
     @Multipart

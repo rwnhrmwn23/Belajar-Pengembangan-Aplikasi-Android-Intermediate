@@ -12,12 +12,14 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.onedev.storyapp.R
-import com.onedev.storyapp.core.data.Resource
 import com.onedev.storyapp.core.data.source.remote.response.Story
 import com.onedev.storyapp.databinding.FragmentStoryBinding
+import com.onedev.storyapp.ui.adapter.LoadingStateAdapter
 import com.onedev.storyapp.ui.adapter.StoryAdapter
-import com.onedev.storyapp.utils.*
-import com.onedev.storyapp.utils.Constant.LIST_STRING
+import com.onedev.storyapp.utils.gone
+import com.onedev.storyapp.utils.hideLoading
+import com.onedev.storyapp.utils.showLoading
+import com.onedev.storyapp.utils.visible
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class StoryFragment : Fragment() {
@@ -37,24 +39,29 @@ class StoryFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setHasOptionsMenu(true)
 
         storyAdapter = StoryAdapter()
         binding?.rvStory?.apply {
             setHasFixedSize(true)
-            adapter = storyAdapter
+            adapter = storyAdapter.withLoadStateFooter(
+                footer = LoadingStateAdapter {
+                    storyAdapter.retry()
+                }
+            )
             addItemDecoration(DividerItemDecoration(requireContext(), LinearLayoutManager.VERTICAL))
         }
 
-        storyAdapter.onItemClick = { dataStory: Story.GetResponse.DataStory, imgStory: ImageView, tvNameStory: TextView, tvDescriptionStory: TextView ->
-            val extras = FragmentNavigatorExtras(
-                imgStory to "storyImg",
-                tvNameStory to "storyName",
-                tvDescriptionStory to "storyDescription"
-            )
-            val action = StoryFragmentDirections.actionStoryFragmentToStoryDetailFragment(dataStory)
-            findNavController().navigate(action, extras)
-        }
+        storyAdapter.onItemClick =
+            { dataStory: Story.GetResponse.DataStory, imgStory: ImageView, tvNameStory: TextView, tvDescriptionStory: TextView ->
+                val extras = FragmentNavigatorExtras(
+                    imgStory to "storyImg",
+                    tvNameStory to "storyName",
+                    tvDescriptionStory to "storyDescription"
+                )
+                val action =
+                    StoryFragmentDirections.actionStoryFragmentToStoryDetailFragment(dataStory)
+                findNavController().navigate(action, extras)
+            }
 
         binding?.toolbar?.setOnMenuItemClickListener {
             when (it.itemId) {
@@ -74,40 +81,21 @@ class StoryFragment : Fragment() {
 
     private fun loadStory() {
         binding?.apply {
-            storyViewModel.story().observe(viewLifecycleOwner) { response ->
-                if (response != null) {
-                    when (response) {
-                        is Resource.Loading -> {
-                            this@StoryFragment.showLoading()
-                            lottieError.gone()
-                            tvError.gone()
-                            rvStory.gone()
-                        }
-                        is Resource.Success -> {
-                            hideLoading()
-                            response.data?.listStory?.apply {
-                                storyAdapter.setListData(this)
-                                lottieError.gone()
-                                tvError.gone()
-                                rvStory.visible()
-
-                                val listImg = ArrayList<String>()
-                                for (i in this) {
-                                    listImg.addAll(listOf(i.photoUrl))
-                                }
-                                putListPreference(requireContext(), LIST_STRING, listImg)
-                            }
-                        }
-                        is Resource.Error -> {
-                            hideLoading()
-                            tvError.text = response.message.toString()
-                            lottieError.visible()
-                            tvError.visible()
-                            rvStory.gone()
-                        }
+            this@StoryFragment.showLoading()
+            storyViewModel.story(page = 1, size = 10, location = 0)
+                .observe(viewLifecycleOwner) { response ->
+                    if (response != null) {
+                        storyAdapter.submitData(lifecycle, response)
+                        rvStory.visible()
+                        lottieError.gone()
+                        tvError.gone()
+                    } else {
+                        lottieError.visible()
+                        tvError.visible()
+                        rvStory.gone()
                     }
+                    hideLoading()
                 }
-            }
         }
     }
 

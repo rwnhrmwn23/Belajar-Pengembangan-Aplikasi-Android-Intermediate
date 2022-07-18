@@ -1,6 +1,7 @@
 package com.onedev.storyapp
 
 import android.app.Application
+import android.content.Context
 import com.onedev.storyapp.core.di.networkModule
 import com.onedev.storyapp.core.di.repositoryModule
 import com.onedev.storyapp.core.di.useCaseModule
@@ -14,6 +15,7 @@ class MyApplication : Application() {
     override fun onCreate() {
         super.onCreate()
         startKoin {
+            appContext = applicationContext
             androidLogger(Level.NONE)
             androidContext(this@MyApplication)
             modules(
@@ -27,4 +29,8 @@ class MyApplication : Application() {
         }
     }
 
+    companion object {
+        var appContext: Context? = null
+            private set
+    }
 }
