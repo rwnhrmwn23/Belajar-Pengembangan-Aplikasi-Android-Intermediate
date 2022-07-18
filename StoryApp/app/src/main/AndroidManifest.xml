@@ -4,13 +4,15 @@
     package="com.onedev.storyapp">
 
     <uses-feature android:name="android.hardware.camera" />
-
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission
         android:name="android.permission.WRITE_EXTERNAL_STORAGE"
         android:maxSdkVersion="18" />
+
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
     <queries>
         <intent>
@@ -30,6 +32,29 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:theme="@style/Theme.StoryApp"
         tools:targetApi="31">
+
+        <activity
+            android:name=".ui.activity.OnBoardingActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".ui.activity.AuthActivity"
+            android:exported="true" />
+
+        <activity
+            android:name=".ui.activity.MainActivity"
+            android:exported="true" />
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyAyslPH0nRfCP9sbqJ4plrsFY9X67cmv2U" />
+
         <receiver
             android:name=".ui.widget.StoryWidget"
             android:exported="false">
@@ -45,22 +70,6 @@
         <service
             android:name=".ui.widget.StoryWidgetService"
             android:permission="android.permission.BIND_REMOTEVIEWS" />
-
-        <activity
-            android:name=".ui.activity.OnBoardingActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name=".ui.activity.AuthActivity"
-            android:exported="true" />
-        <activity
-            android:name=".ui.activity.MainActivity"
-            android:exported="true" />
 
         <provider
             android:name="androidx.core.content.FileProvider"

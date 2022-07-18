@@ -64,6 +64,21 @@ class RemoteDataSource(
         }.flowOn(Dispatchers.IO)
     }
 
+    suspend fun storyWithLocation(): Flow<ApiResponse<Story.GetResponse>> {
+        return flow {
+            try {
+                val response = apiServiceWithHeader.storyWithLocation()
+                if (!response.error)
+                    emit(ApiResponse.Success(response))
+                else
+                    emit(ApiResponse.Error(response.message))
+            } catch (e: Exception) {
+                e.printStackTrace()
+                emit(ApiResponse.Error(getErrorThrowableMsg(e)))
+            }
+        }.flowOn(Dispatchers.IO)
+    }
+
     suspend fun story(file: MultipartBody.Part, description: RequestBody): Flow<ApiResponse<Story.PostResponse>> {
         return flow {
             try {

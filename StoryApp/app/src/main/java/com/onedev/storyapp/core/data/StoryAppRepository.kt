@@ -35,6 +35,13 @@ class StoryAppRepository(
             }
         }.asFlow()
 
+    override fun storyWithLocation(): Flow<Resource<Story.GetResponse>> =
+        object : NetworkResource<Story.GetResponse>() {
+            override suspend fun createCall(): Flow<ApiResponse<Story.GetResponse>> {
+                return remoteDataSource.storyWithLocation()
+            }
+        }.asFlow()
+
     override fun story(file: MultipartBody.Part, description: RequestBody): Flow<Resource<Story.PostResponse>> =
         object : NetworkResource<Story.PostResponse>() {
             override suspend fun createCall(): Flow<ApiResponse<Story.PostResponse>> {

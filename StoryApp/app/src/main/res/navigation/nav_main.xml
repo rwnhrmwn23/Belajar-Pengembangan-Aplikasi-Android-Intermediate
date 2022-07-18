@@ -19,6 +19,9 @@
         <action
             android:id="@+id/action_storyFragment_to_storyDetailFragment"
             app:destination="@id/storyDetailFragment" />
+        <action
+            android:id="@+id/action_storyFragment_to_mapsFragment"
+            app:destination="@id/mapsFragment" />
     </fragment>
     <fragment
         android:id="@+id/settingsFragment"
@@ -39,4 +42,9 @@
             android:name="data"
             app:argType="com.onedev.storyapp.core.data.source.remote.response.Story$GetResponse$DataStory" />
     </fragment>
+    <fragment
+        android:id="@+id/mapsFragment"
+        android:name="com.onedev.storyapp.ui.fragment.maps.MapsFragment"
+        android:label="fragment_maps"
+        tools:layout="@layout/fragment_maps" />
 </navigation>

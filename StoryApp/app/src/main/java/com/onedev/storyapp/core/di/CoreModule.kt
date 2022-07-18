@@ -9,6 +9,7 @@ import com.onedev.storyapp.core.domain.repository.IStoryAppRepository
 import com.onedev.storyapp.core.domain.usecase.StoryAppInteractor
 import com.onedev.storyapp.core.domain.usecase.StoryAppUseCase
 import com.onedev.storyapp.ui.fragment.login.LoginViewModel
+import com.onedev.storyapp.ui.fragment.maps.StoryLocationViewModel
 import com.onedev.storyapp.ui.fragment.register.RegisterViewModel
 import com.onedev.storyapp.ui.fragment.story.StoryViewModel
 import com.onedev.storyapp.utils.Constant.USER_TOKEN
@@ -69,4 +70,5 @@ val viewModelModule = module {
     viewModel { LoginViewModel(get()) }
     viewModel { RegisterViewModel(get()) }
     viewModel { StoryViewModel(get()) }
+    viewModel { StoryLocationViewModel(get()) }
 }

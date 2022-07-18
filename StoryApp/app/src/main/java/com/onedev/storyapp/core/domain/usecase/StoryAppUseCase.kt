@@ -12,5 +12,6 @@ interface StoryAppUseCase {
     fun register(request: Register.Request): Flow<Resource<Register.Response>>
     fun login(request: Login.Request): Flow<Resource<Login.Response>>
     fun story(): Flow<Resource<Story.GetResponse>>
+    fun storyWithLocation(): Flow<Resource<Story.GetResponse>>
     fun story(file: MultipartBody.Part, description: RequestBody): Flow<Resource<Story.PostResponse>>
 }
