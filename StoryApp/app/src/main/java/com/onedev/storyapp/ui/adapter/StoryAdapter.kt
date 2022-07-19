@@ -7,17 +7,17 @@ import android.widget.TextView
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.onedev.storyapp.core.data.source.remote.response.Story
+import com.onedev.storyapp.core.data.source.local.entity.StoryEntity
 import com.onedev.storyapp.databinding.LayoutListStoryBinding
 
 class StoryAdapter :
-    PagingDataAdapter<Story.GetResponse.DataStory, StoryAdapter.HomeViewHolder>(DIFF_CALLBACK) {
+    PagingDataAdapter<StoryEntity, StoryAdapter.HomeViewHolder>(DIFF_CALLBACK) {
 
-    var onItemClick: ((Story.GetResponse.DataStory, ImageView, TextView, TextView) -> Unit)? = null
+    var onItemClick: ((StoryEntity, ImageView, TextView, TextView) -> Unit)? = null
 
     inner class HomeViewHolder(private val binding: LayoutListStoryBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(data: Story.GetResponse.DataStory) {
+        fun bind(data: StoryEntity) {
             binding.viewmodel = data
             binding.executePendingBindings()
 
@@ -41,17 +41,17 @@ class StoryAdapter :
     }
 
     companion object {
-        private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<Story.GetResponse.DataStory>() {
+        private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<StoryEntity>() {
             override fun areItemsTheSame(
-                oldItem: Story.GetResponse.DataStory,
-                newItem: Story.GetResponse.DataStory
+                oldItem: StoryEntity,
+                newItem: StoryEntity
             ): Boolean {
                 return oldItem == newItem
             }
 
             override fun areContentsTheSame(
-                oldItem: Story.GetResponse.DataStory,
-                newItem: Story.GetResponse.DataStory
+                oldItem: StoryEntity,
+                newItem: StoryEntity
             ): Boolean {
                 return oldItem.id == newItem.id
             }

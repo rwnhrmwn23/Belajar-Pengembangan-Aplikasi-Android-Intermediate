@@ -12,7 +12,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.onedev.storyapp.R
-import com.onedev.storyapp.core.data.source.remote.response.Story
+import com.onedev.storyapp.core.data.source.local.entity.StoryEntity
 import com.onedev.storyapp.databinding.FragmentStoryBinding
 import com.onedev.storyapp.ui.adapter.LoadingStateAdapter
 import com.onedev.storyapp.ui.adapter.StoryAdapter
@@ -52,7 +52,7 @@ class StoryFragment : Fragment() {
         }
 
         storyAdapter.onItemClick =
-            { dataStory: Story.GetResponse.DataStory, imgStory: ImageView, tvNameStory: TextView, tvDescriptionStory: TextView ->
+            { dataStory: StoryEntity, imgStory: ImageView, tvNameStory: TextView, tvDescriptionStory: TextView ->
                 val extras = FragmentNavigatorExtras(
                     imgStory to "storyImg",
                     tvNameStory to "storyName",

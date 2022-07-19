@@ -1,7 +1,11 @@
 package com.onedev.storyapp.core.di
 
+import androidx.room.Room
 import com.onedev.storyapp.BuildConfig.BASE_URL
+import com.onedev.storyapp.BuildConfig.DB_NAME
 import com.onedev.storyapp.core.data.StoryAppRepository
+import com.onedev.storyapp.core.data.source.local.LocalDataSource
+import com.onedev.storyapp.core.data.source.local.room.StoryDatabase
 import com.onedev.storyapp.core.data.source.remote.RemoteDataSource
 import com.onedev.storyapp.core.data.source.remote.network.ApiService
 import com.onedev.storyapp.core.data.source.remote.network.ApiServiceWithHeader
@@ -15,11 +19,24 @@ import com.onedev.storyapp.ui.fragment.story.StoryViewModel
 import com.onedev.storyapp.utils.Constant.USER_TOKEN
 import com.onedev.storyapp.utils.getPreference
 import okhttp3.OkHttpClient
+import org.koin.android.ext.koin.androidContext
 import org.koin.android.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
+
+val databaseModule = module {
+    factory { get<StoryDatabase>().storyDao() }
+    factory { get<StoryDatabase>().remoteKeysDao() }
+    single {
+        Room.databaseBuilder(
+            androidContext(),
+            StoryDatabase::class.java,
+            DB_NAME
+        ).build()
+    }
+}
 
 val networkModule = module {
     single {
@@ -61,8 +78,9 @@ val useCaseModule = module {
 
 val repositoryModule = module {
     single { RemoteDataSource(get(), get()) }
+    single { LocalDataSource(get(), get()) }
     single<IStoryAppRepository> {
-        StoryAppRepository(get())
+        StoryAppRepository(get(), get())
     }
 }
 

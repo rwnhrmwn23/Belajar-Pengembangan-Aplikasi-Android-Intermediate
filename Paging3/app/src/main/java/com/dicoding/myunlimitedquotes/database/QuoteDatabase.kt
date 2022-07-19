@@ -7,11 +7,14 @@ import androidx.room.RoomDatabase
 import com.dicoding.myunlimitedquotes.network.QuoteResponseItem
 
 @Database(
-    entities = [QuoteResponseItem::class],
+    entities = [QuoteResponseItem::class, RemoteKeys::class],
     version = 1,
     exportSchema = false
 )
 abstract class QuoteDatabase : RoomDatabase() {
+
+    abstract fun quoteDao(): QuoteDao
+    abstract fun remoteKeysDao(): RemoteKeysDao
 
     companion object {
         @Volatile

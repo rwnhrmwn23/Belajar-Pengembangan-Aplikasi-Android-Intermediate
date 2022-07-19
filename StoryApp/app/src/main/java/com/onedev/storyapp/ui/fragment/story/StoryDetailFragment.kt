@@ -1,13 +1,13 @@
 package com.onedev.storyapp.ui.fragment.story
 
 import android.os.Bundle
-import androidx.transition.TransitionInflater
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
-import com.onedev.storyapp.core.data.source.remote.response.Story
+import androidx.transition.TransitionInflater
+import com.onedev.storyapp.core.data.source.local.entity.StoryEntity
 import com.onedev.storyapp.databinding.FragmentStoryDetailBinding
 import com.onedev.storyapp.utils.navigateUp
 
@@ -36,7 +36,7 @@ class StoryDetailFragment : Fragment() {
         populateView(args.data)
     }
 
-    private fun populateView(data: Story.GetResponse.DataStory) {
+    private fun populateView(data: StoryEntity) {
         binding?.apply {
             viewmodel = data
             executePendingBindings()

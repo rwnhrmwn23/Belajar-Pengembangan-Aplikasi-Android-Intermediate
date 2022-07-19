@@ -14,8 +14,8 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.onedev.storyapp.R
 import com.onedev.storyapp.core.data.Resource
-import com.onedev.storyapp.core.data.source.remote.response.Login.setRequestLogin
-import com.onedev.storyapp.core.data.source.remote.response.Register.setBodyRequest
+import com.onedev.storyapp.core.data.source.remote.request.RequestLogin.Companion.setRequestLogin
+import com.onedev.storyapp.core.data.source.remote.request.RequestRegister.Companion.setRequestRegister
 import com.onedev.storyapp.databinding.FragmentRegisterBinding
 import com.onedev.storyapp.ui.activity.MainActivity
 import com.onedev.storyapp.utils.*
@@ -122,27 +122,28 @@ class RegisterFragment : Fragment(), View.OnClickListener {
 
     private fun login(email: String, password: String) {
         binding?.apply {
-            registerViewModel.login(setRequestLogin(email, password)).observe(viewLifecycleOwner) { response ->
-                if (response != null) {
-                    when (response) {
-                        is Resource.Loading -> { }
-                        is Resource.Success -> {
-                            hideLoading()
-                            response.data?.loginResult?.apply {
-                                putPreference(requireContext(), USER_ID, userId)
-                                putPreference(requireContext(), USER_NAME, name)
-                                putPreference(requireContext(), USER_TOKEN, getString(R.string.token, token))
+            registerViewModel.login(setRequestLogin(email, password))
+                .observe(viewLifecycleOwner) { response ->
+                    if (response != null) {
+                        when (response) {
+                            is Resource.Loading -> { }
+                            is Resource.Success -> {
+                                hideLoading()
+                                response.data?.loginResult?.apply {
+                                    putPreference(requireContext(), USER_ID, userId)
+                                    putPreference(requireContext(), USER_NAME, name)
+                                    putPreference(requireContext(), USER_TOKEN, getString(R.string.token, token))
 
-                                startActivity(Intent(requireActivity(), MainActivity::class.java))
-                                requireActivity().finish()
+                                    startActivity(Intent(requireActivity(), MainActivity::class.java))
+                                    requireActivity().finish()
+                                }
+                            }
+                            is Resource.Error -> {
+                                hideLoading()
+                                requireView().showSnackBar(response.message.toString())
                             }
                         }
-                        is Resource.Error -> {
-                            hideLoading()
-                            requireView().showSnackBar(response.message.toString())
-                        }
                     }
-                }
             }
         }
     }
@@ -157,9 +158,8 @@ class RegisterFragment : Fragment(), View.OnClickListener {
                     val name = edtName.text.toString()
                     val email = edtEmail.text.toString()
                     val password = edtPassword.text.toString()
-
-                    if (name.isNotEmpty() && email.isNotEmpty() && password.isNotEmpty()) {
-                        registerViewModel.register(setBodyRequest(name, email, password)).observe(viewLifecycleOwner) { response ->
+                    registerViewModel.register(setRequestRegister(name, email, password))
+                        .observe(viewLifecycleOwner) { response ->
                             if (response != null) {
                                 when (response) {
                                     is Resource.Loading -> {
@@ -175,7 +175,6 @@ class RegisterFragment : Fragment(), View.OnClickListener {
                                 }
                             }
                         }
-                    }
                 }
             }
         }

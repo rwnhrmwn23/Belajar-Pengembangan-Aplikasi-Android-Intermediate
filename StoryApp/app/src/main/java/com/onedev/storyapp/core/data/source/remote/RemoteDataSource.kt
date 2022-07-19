@@ -5,9 +5,9 @@ import com.onedev.storyapp.MyApplication
 import com.onedev.storyapp.core.data.source.remote.network.ApiResponse
 import com.onedev.storyapp.core.data.source.remote.network.ApiService
 import com.onedev.storyapp.core.data.source.remote.network.ApiServiceWithHeader
-import com.onedev.storyapp.core.data.source.remote.response.Login
-import com.onedev.storyapp.core.data.source.remote.response.Register
-import com.onedev.storyapp.core.data.source.remote.response.Story
+import com.onedev.storyapp.core.data.source.remote.request.RequestLogin
+import com.onedev.storyapp.core.data.source.remote.request.RequestRegister
+import com.onedev.storyapp.core.data.source.remote.response.*
 import com.onedev.storyapp.utils.Constant
 import com.onedev.storyapp.utils.ErrorUtils.getErrorThrowableMsg
 import com.onedev.storyapp.utils.putListPreference
@@ -25,7 +25,7 @@ class RemoteDataSource(
 
     private lateinit var listImage: ArrayList<String>
 
-    suspend fun register(request: Register.Request): Flow<ApiResponse<Register.Response>> {
+    suspend fun register(request: RequestRegister): Flow<ApiResponse<ResponseRegister>> {
         return flow {
             try {
                 val response = apiService.register(request)
@@ -40,7 +40,7 @@ class RemoteDataSource(
         }.flowOn(Dispatchers.IO)
     }
 
-    suspend fun login(request: Login.Request): Flow<ApiResponse<Login.Response>> {
+    suspend fun login(request: RequestLogin): Flow<ApiResponse<ResponseLogin>> {
         return flow {
             try {
                 val response = apiService.login(request)
@@ -55,7 +55,7 @@ class RemoteDataSource(
         }.flowOn(Dispatchers.IO)
     }
 
-    suspend fun story(page: Int, size: Int, location: Int): Flow<ApiResponse<Story.GetResponse>> {
+    suspend fun story(page: Int, size: Int, location: Int): Flow<ApiResponse<GetStoryResponse>> {
         return flow {
             try {
                 val response = apiServiceWithHeader.story(page, size, location)
@@ -80,7 +80,7 @@ class RemoteDataSource(
         }.flowOn(Dispatchers.IO)
     }
 
-    suspend fun storyMap(page: Int, size: Int, location: Int): Flow<ApiResponse<Story.GetResponse>> {
+    suspend fun storyMap(page: Int, size: Int, location: Int): Flow<ApiResponse<GetStoryResponse>> {
         return flow {
             try {
                 val response = apiServiceWithHeader.story(page, size, location)
@@ -95,7 +95,7 @@ class RemoteDataSource(
         }.flowOn(Dispatchers.IO)
     }
 
-    suspend fun story(file: MultipartBody.Part, description: RequestBody): Flow<ApiResponse<Story.PostResponse>> {
+    suspend fun story(file: MultipartBody.Part, description: RequestBody): Flow<ApiResponse<AddStoryResponse>> {
         return flow {
             try {
                 val response = apiServiceWithHeader.story(file, description)

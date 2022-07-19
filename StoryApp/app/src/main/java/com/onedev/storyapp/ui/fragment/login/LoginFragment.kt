@@ -14,7 +14,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.onedev.storyapp.R
 import com.onedev.storyapp.core.data.Resource
-import com.onedev.storyapp.core.data.source.remote.response.Login
+import com.onedev.storyapp.core.data.source.remote.request.RequestLogin.Companion.setRequestLogin
 import com.onedev.storyapp.databinding.FragmentLoginBinding
 import com.onedev.storyapp.ui.activity.MainActivity
 import com.onedev.storyapp.utils.Constant.USER_ID
@@ -115,31 +115,30 @@ class LoginFragment : Fragment(), View.OnClickListener {
                 binding?.apply {
                     val email = edtEmail.text.toString()
                     val password = edtPassword.text.toString()
+                    loginViewModel.login(setRequestLogin(email, password))
+                        .observe(viewLifecycleOwner) { response ->
+                            if (response != null) {
+                                when (response) {
+                                    is Resource.Loading -> {
+                                        this@LoginFragment.showLoading()
+                                    }
+                                    is Resource.Success -> {
+                                        hideLoading()
+                                        response.data?.loginResult?.apply {
+                                            putPreference(requireContext(), USER_ID, userId)
+                                            putPreference(requireContext(), USER_NAME, name)
+                                            putPreference(requireContext(), USER_TOKEN, getString(R.string.token, token))
 
-                    val body = Login.Request(email, password)
-                    loginViewModel.login(body).observe(viewLifecycleOwner) { response ->
-                        if (response != null) {
-                            when (response) {
-                                is Resource.Loading -> {
-                                    this@LoginFragment.showLoading()
-                                }
-                                is Resource.Success -> {
-                                    hideLoading()
-                                    response.data?.loginResult?.apply {
-                                        putPreference(requireContext(), USER_ID, userId)
-                                        putPreference(requireContext(), USER_NAME, name)
-                                        putPreference(requireContext(), USER_TOKEN, getString(R.string.token, token))
-
-                                        startActivity(Intent(requireActivity(), MainActivity::class.java))
-                                        requireActivity().finish()
+                                            startActivity(Intent(requireActivity(), MainActivity::class.java))
+                                            requireActivity().finish()
+                                        }
+                                    }
+                                    is Resource.Error -> {
+                                        hideLoading()
+                                        requireView().showSnackBar(response.message.toString())
                                     }
                                 }
-                                is Resource.Error -> {
-                                    hideLoading()
-                                    requireView().showSnackBar(response.message.toString())
-                                }
                             }
-                        }
                     }
                 }
             }

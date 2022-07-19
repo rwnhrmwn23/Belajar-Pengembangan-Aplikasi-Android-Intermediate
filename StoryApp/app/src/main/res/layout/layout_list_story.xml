@@ -7,7 +7,7 @@
 
         <variable
             name="viewmodel"
-            type="com.onedev.storyapp.core.data.source.remote.response.Story.GetResponse.DataStory" />
+            type="com.onedev.storyapp.core.data.source.local.entity.StoryEntity" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

@@ -2,10 +2,7 @@ package com.onedev.storyapp
 
 import android.app.Application
 import android.content.Context
-import com.onedev.storyapp.core.di.networkModule
-import com.onedev.storyapp.core.di.repositoryModule
-import com.onedev.storyapp.core.di.useCaseModule
-import com.onedev.storyapp.core.di.viewModelModule
+import com.onedev.storyapp.core.di.*
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
@@ -20,6 +17,7 @@ class MyApplication : Application() {
             androidContext(this@MyApplication)
             modules(
                 listOf(
+                    databaseModule,
                     networkModule,
                     repositoryModule,
                     useCaseModule,

@@ -7,7 +7,6 @@ import androidx.paging.LoadState
 import androidx.paging.LoadStateAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.onedev.storyapp.databinding.LayoutItemLoadingBinding
-import com.onedev.storyapp.utils.visible
 
 class LoadingStateAdapter(private val retry: () -> Unit) : LoadStateAdapter<LoadingStateAdapter.LoadingStateViewHolder>() {
     override fun onCreateViewHolder(

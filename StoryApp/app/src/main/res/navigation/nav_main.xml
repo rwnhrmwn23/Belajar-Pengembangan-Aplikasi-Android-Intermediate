@@ -40,7 +40,7 @@
         tools:layout="@layout/fragment_story_detail">
         <argument
             android:name="data"
-            app:argType="com.onedev.storyapp.core.data.source.remote.response.Story$GetResponse$DataStory" />
+            app:argType="com.onedev.storyapp.core.data.source.local.entity.StoryEntity" />
     </fragment>
     <fragment
         android:id="@+id/mapsFragment"
