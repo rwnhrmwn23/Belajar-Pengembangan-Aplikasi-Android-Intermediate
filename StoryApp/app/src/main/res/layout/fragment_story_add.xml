@@ -58,24 +58,41 @@
             android:id="@+id/edt_description"
             style="@style/TextAppearance.MdcTypographyStyles.Body1"
             android:layout_width="match_parent"
-            android:layout_height="150dp"
+            android:layout_height="120dp"
             android:gravity="start"
             android:hint="@string/description"
             android:imeOptions="actionDone"/>
 
     </com.google.android.material.textfield.TextInputLayout>
 
+    <TextView
+        style="@style/TextAppearance.MdcTypographyStyles.Body1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/share_my_location"
+        app:layout_constraintBottom_toBottomOf="@+id/switch_share_my_location"
+        app:layout_constraintStart_toStartOf="@+id/textInputLayout"
+        app:layout_constraintTop_toTopOf="@+id/switch_share_my_location" />
+
+    <com.google.android.material.switchmaterial.SwitchMaterial
+        android:id="@+id/switch_share_my_location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="@+id/textInputLayout"
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout" />
+
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_upload"
         style="@style/TextAppearance.MdcTypographyStyles.Button"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dimens_medium"
         android:text="@string/upload"
+        android:layout_marginTop="16dp"
         android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="@+id/textInputLayout"
         app:layout_constraintStart_toStartOf="@+id/textInputLayout"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayout" />
+        app:layout_constraintTop_toBottomOf="@+id/switch_share_my_location" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -21,7 +21,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
-            app:menu="@menu/menu_map_options"
             app:navigationIcon="@drawable/ic_round_keyboard_backspace_white"
             app:title="@string/maps"
             app:titleTextColor="@color/white" />

@@ -45,4 +45,7 @@
     <string name="image_story">Image Story</string>
     <string name="retry">Retry</string>
     <string name="Loading">Loading</string>
+    <string name="share_my_location">Share my location</string>
+    <string name="access_location_off">Access location off</string>
+    <string name="turn_on">Turn On</string>
 </resources>

@@ -69,12 +69,15 @@ class RemoteDataSource(
                     for (i in response.listStory) {
                         listImage.addAll(listOf(i.photoUrl))
                     }
-                    putListPreference(MyApplication.appContext as Context, Constant.LIST_STRING, listImage)
-                }
-                else
+                    putListPreference(
+                        MyApplication.appContext as Context,
+                        Constant.LIST_STRING,
+                        listImage
+                    )
+                } else
                     emit(ApiResponse.Error(response.message))
             } catch (e: Exception) {
-               e.printStackTrace()
+                e.printStackTrace()
                 emit(ApiResponse.Error(getErrorThrowableMsg(e)))
             }
         }.flowOn(Dispatchers.IO)
@@ -95,10 +98,15 @@ class RemoteDataSource(
         }.flowOn(Dispatchers.IO)
     }
 
-    suspend fun story(file: MultipartBody.Part, description: RequestBody): Flow<ApiResponse<AddStoryResponse>> {
+    suspend fun story(
+        file: MultipartBody.Part,
+        description: RequestBody,
+        lat: RequestBody?,
+        lon: RequestBody?
+    ): Flow<ApiResponse<AddStoryResponse>> {
         return flow {
             try {
-                val response = apiServiceWithHeader.story(file, description)
+                val response = apiServiceWithHeader.story(file, description, lat, lon)
                 if (!response.error)
                     emit(ApiResponse.Success(response))
                 else

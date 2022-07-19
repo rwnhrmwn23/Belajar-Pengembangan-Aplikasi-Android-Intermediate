@@ -45,4 +45,7 @@
     <string name="image_story">Gambar Cerita</string>
     <string name="retry">Coba Lagi</string>
     <string name="Loading">Memuat</string>
+    <string name="share_my_location">Bagikan lokasi si</string>
+    <string name="access_location_off">Akses lokasi mati</string>
+    <string name="turn_on">Nyalakan</string>
 </resources>

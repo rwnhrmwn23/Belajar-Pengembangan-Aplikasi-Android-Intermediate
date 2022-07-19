@@ -19,5 +19,10 @@ interface IStoryAppRepository {
 
     fun story(page: Int, size: Int, location: Int): Flow<PagingData<StoryEntity>>
     fun storyMap(page: Int, size: Int, location: Int): Flow<Resource<GetStoryResponse>>
-    fun story(file: MultipartBody.Part, description: RequestBody): Flow<Resource<AddStoryResponse>>
+    fun story(
+        file: MultipartBody.Part,
+        description: RequestBody,
+        lat: RequestBody?,
+        lon: RequestBody?
+    ): Flow<Resource<AddStoryResponse>>
 }

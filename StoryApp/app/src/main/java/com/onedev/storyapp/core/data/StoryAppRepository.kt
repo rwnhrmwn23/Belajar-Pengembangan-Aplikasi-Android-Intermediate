@@ -67,11 +67,13 @@ class StoryAppRepository(
 
     override fun story(
         file: MultipartBody.Part,
-        description: RequestBody
+        description: RequestBody,
+        lat: RequestBody?,
+        lon: RequestBody?
     ): Flow<Resource<AddStoryResponse>> =
         object : NetworkResource<AddStoryResponse>() {
             override suspend fun createCall(): Flow<ApiResponse<AddStoryResponse>> {
-                return remoteDataSource.story(file, description)
+                return remoteDataSource.story(file, description, lat, lon)
             }
         }.asFlow()
 }

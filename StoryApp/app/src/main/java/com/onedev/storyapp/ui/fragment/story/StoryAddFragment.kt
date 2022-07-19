@@ -3,17 +3,25 @@ package com.onedev.storyapp.ui.fragment.story
 import android.Manifest
 import android.app.Activity.RESULT_OK
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.graphics.BitmapFactory
+import android.location.Location
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
+import android.provider.Settings
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import androidx.fragment.app.Fragment
+import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationServices
 import com.google.android.material.bottomsheet.BottomSheetDialog
+import com.google.android.material.snackbar.Snackbar
 import com.karumi.dexter.Dexter
 import com.karumi.dexter.PermissionToken
 import com.karumi.dexter.listener.PermissionDeniedResponse
@@ -39,8 +47,10 @@ class StoryAddFragment : Fragment(), View.OnClickListener {
     private val storyViewModel: StoryViewModel by viewModel()
     private var _binding: FragmentStoryAddBinding? = null
     private val binding get() = _binding
-
     private var getFile: File? = null
+    private var latitude: Double? = null
+    private var longitude: Double? = null
+    private lateinit var fusedLocationClient: FusedLocationProviderClient
     private lateinit var currentPhotoPath: String
 
     override fun onCreateView(
@@ -57,6 +67,16 @@ class StoryAddFragment : Fragment(), View.OnClickListener {
 
         binding?.imgAddPhoto?.setOnClickListener(this)
         binding?.btnUpload?.setOnClickListener(this)
+        binding?.switchShareMyLocation?.setOnCheckedChangeListener { _, isChecked ->
+            if (isChecked) {
+                getMyLocation()
+            } else {
+                latitude = null
+                longitude = null
+            }
+        }
+
+        fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireActivity())
 
         checkPermissionCamera()
     }
@@ -128,6 +148,49 @@ class StoryAddFragment : Fragment(), View.OnClickListener {
         }
     }
 
+    private fun getMyLocation() {
+        if (ContextCompat.checkSelfPermission(
+                requireContext(),
+                Manifest.permission.ACCESS_COARSE_LOCATION
+            ) == PackageManager.PERMISSION_GRANTED
+        ) {
+            fusedLocationClient.lastLocation.addOnSuccessListener { location ->
+                if (location != null) {
+                    latitude = location.latitude
+                    longitude = location.longitude
+                    Log.d(TAG, "getMyLocation: $latitude, $longitude")
+                } else {
+                    binding?.switchShareMyLocation?.isChecked = false
+                }
+            }
+        } else {
+            requestPermissionLauncher.launch(Manifest.permission.ACCESS_COARSE_LOCATION)
+        }
+    }
+
+    private val requestPermissionLauncher = registerForActivityResult(
+        ActivityResultContracts.RequestPermission()
+    ) { permissions ->
+        Log.d(TAG, "$permissions")
+        when (permissions) {
+            true -> {
+                getMyLocation()
+            }
+            else -> {
+                Snackbar
+                    .make(requireView(), getString(R.string.access_location_off), Snackbar.LENGTH_SHORT)
+                    .setAction(getString(R.string.turn_on)) {
+                        Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS).also { intent ->
+                            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                            startActivity(intent)
+                        }
+                    }
+                    .show()
+                binding?.switchShareMyLocation?.isChecked = false
+            }
+        }
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
@@ -158,15 +221,28 @@ class StoryAddFragment : Fragment(), View.OnClickListener {
                     binding?.apply {
                         val file = reduceFileImage(getFile as File)
                         val description = edtDescription.text.toString()
-                        val requestImageFile = file.asRequestBody("image/jpeg".toMediaTypeOrNull())
-                        val imageMultipart: MultipartBody.Part = MultipartBody.Part.createFormData(
-                            "photo",
-                            file.name,
-                            requestImageFile
-                        )
+                        val requestImageFile =
+                            file.asRequestBody("image/jpeg".toMediaTypeOrNull())
+                        val imageMultipart: MultipartBody.Part =
+                            MultipartBody.Part.createFormData(
+                                "photo",
+                                file.name,
+                                requestImageFile
+                            )
                         if (description.isNotEmpty()) {
                             val descriptionRequestBody = description.toRequestBody("text/plain".toMediaType())
-                            storyViewModel.story(imageMultipart, descriptionRequestBody).observe(viewLifecycleOwner) { response ->
+                            val latitudeRequestBody = if (latitude != null)
+                                latitude.toString().toRequestBody("text/plain".toMediaType()) else null
+
+                            val longitudeRequestBody = if (longitude != null)
+                                longitude.toString().toRequestBody("text/plain".toMediaType()) else null
+
+                            storyViewModel.story(
+                                imageMultipart,
+                                descriptionRequestBody,
+                                latitudeRequestBody,
+                                longitudeRequestBody
+                            ).observe(viewLifecycleOwner) { response ->
                                 if (response != null) {
                                     when (response) {
                                         is Resource.Loading -> {
@@ -190,5 +266,9 @@ class StoryAddFragment : Fragment(), View.OnClickListener {
                 }
             }
         }
+    }
+
+    companion object {
+        private const val TAG = "StoryAddFragment"
     }
 }

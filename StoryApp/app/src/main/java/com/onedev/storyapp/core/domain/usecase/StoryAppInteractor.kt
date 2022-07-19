@@ -10,7 +10,16 @@ class StoryAppInteractor(private val iStoryAppRepository: IStoryAppRepository) :
     override fun register(request: RequestRegister) = iStoryAppRepository.register(request)
     override fun login(request: RequestLogin) = iStoryAppRepository.login(request)
 
-    override fun story(page: Int, size: Int, location: Int) = iStoryAppRepository.story(page, size, location)
-    override fun storyMap(page: Int, size: Int, location: Int) = iStoryAppRepository.storyMap(page, size, location)
-    override fun story(file: MultipartBody.Part, description: RequestBody) = iStoryAppRepository.story(file, description)
+    override fun story(page: Int, size: Int, location: Int) =
+        iStoryAppRepository.story(page, size, location)
+
+    override fun storyMap(page: Int, size: Int, location: Int) =
+        iStoryAppRepository.storyMap(page, size, location)
+
+    override fun story(
+        file: MultipartBody.Part,
+        description: RequestBody,
+        lat: RequestBody?,
+        lon: RequestBody?
+    ) = iStoryAppRepository.story(file, description, lat, lon)
 }

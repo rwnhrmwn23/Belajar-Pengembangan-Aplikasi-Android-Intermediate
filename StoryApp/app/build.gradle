@@ -97,4 +97,7 @@ dependencies {
     implementation 'androidx.room:room-ktx:2.5.0-alpha02'
     implementation 'androidx.room:room-paging:2.5.0-alpha02'
     kapt 'androidx.room:room-compiler:2.5.0-alpha02'
+
+    // Location
+    implementation 'com.google.android.gms:play-services-location:20.0.0'
 }

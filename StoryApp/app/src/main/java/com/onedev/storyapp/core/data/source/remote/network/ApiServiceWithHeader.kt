@@ -20,5 +20,7 @@ interface ApiServiceWithHeader {
     suspend fun story(
         @Part file: MultipartBody.Part,
         @Part("description") description: RequestBody,
+        @Part("lat") lat: RequestBody?,
+        @Part("lon") lon: RequestBody?,
     ):  AddStoryResponse
 }
